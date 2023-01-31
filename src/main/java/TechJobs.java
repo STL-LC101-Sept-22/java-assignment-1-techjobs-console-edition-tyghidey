@@ -118,8 +118,42 @@ public class TechJobs {
     }
 
     // Print a list of jobs
+    /*
+       Implement the printJobs method that should print the job listings in a specific format,
+       including the position type, name, employer, location, and core competency.
+       If there are no results, it should print "No Results".
+     */
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-
-        System.out.println("printJobs is not implemented yet");
+        if(someJobs.isEmpty()) {
+            System.out.print("No Results");
+        } else {
+            for(HashMap<String, String> job : someJobs) {
+                System.out.println("\n" + "*****");
+                for(String key : job.keySet()) {
+                    System.out.println(key + ": " + job.get(key));
+                }
+                System.out.println("*****");
+            }
+        }
+        //System.out.println("printJobs is not implemented yet");
     }
+
 }
+
+/*
+*****
+position type: Data Scientist / Business Intelligence
+name: Sr. IT Analyst (Data/BI)
+employer: Bull Moose Industries
+location: Saint Louis
+core competency: Statistical Analysis
+*****
+
+*****
+position type: Web - Back End
+name: Ruby specialist
+employer: LaunchCode
+location: Saint Louis
+core competency: Javascript
+*****
+ */

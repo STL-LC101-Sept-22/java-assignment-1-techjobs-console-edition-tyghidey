@@ -5,10 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -74,16 +71,12 @@ public class JobData {
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
-
         for (HashMap<String, String> row : allJobs) {
-
             String aValue = row.get(column);
-
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value.toLowerCase())) { // to lower case.
                 jobs.add(row);
             }
         }
-
         return jobs;
     }
 
@@ -93,14 +86,33 @@ public class JobData {
      * @param value The search term to look for
      * @return      List of all jobs with at least one field containing the value
      */
+
     public static ArrayList<HashMap<String, String>> findByValue(String value) {
 
         // load data, if not already loaded
         loadData();
 
-        // TODO - implement this method
-        return null;
-    }
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>(); //
+        value = value.toLowerCase(); // to lower case
+        for (HashMap<String, String> row : allJobs) {
+            for (String key : row.keySet()) {
+                String aValue = row.get(key).toLowerCase();
+                if (aValue.contains(value)) {
+                    jobs.add(row);
+                    break;
+                }
+            }
+        }
+        return jobs;
+    } //
+
+    /*
+    Create the findByValue method that enables a search that looks for
+    the search term in all columns, without duplicating the jobs.
+    Your code should be able to handle new columns added to the data.
+     */
+
+
 
     /**
      * Read in data from a CSV file and store it in a list
@@ -144,3 +156,4 @@ public class JobData {
     }
 
 }
+
