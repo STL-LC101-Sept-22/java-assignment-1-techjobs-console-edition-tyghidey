@@ -73,7 +73,7 @@ public class JobData {
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
         for (HashMap<String, String> row : allJobs) {
             String aValue = row.get(column);
-            if (aValue.toLowerCase().contains(value.toLowerCase())) { // MW added case insensitivity
+            if (aValue.toLowerCase().contains(value.toLowerCase())) { // to lower case.
                 jobs.add(row);
             }
         }
@@ -92,8 +92,8 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
-        value = value.toLowerCase();
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>(); //
+        value = value.toLowerCase(); // to lower case
         for (HashMap<String, String> row : allJobs) {
             for (String key : row.keySet()) {
                 String aValue = row.get(key).toLowerCase();
@@ -104,7 +104,13 @@ public class JobData {
             }
         }
         return jobs;
-    }
+    } //
+
+    /*
+    Create the findByValue method that enables a search that looks for
+    the search term in all columns, without duplicating the jobs.
+    Your code should be able to handle new columns added to the data.
+     */
 
 
 
